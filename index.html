@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Objc-oauth2 by frumin</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Objc-oauth2</h1>
+        <h2>OAuth2 implementation of Resource Owner Password Credentials Grant</h2>
+        <a href="https://github.com/frumin/objc-oauth2" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="oauth2-in-objective-c" class="anchor" href="#oauth2-in-objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a>OAuth2 in Objective-C</h1>
+
+<h2>
+<a id="goals" class="anchor" href="#goals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goals</h2>
+
+<p>OAuth2 implements only a fraction of RFC 6749. It’s designed to handle <a href="https://tools.ietf.org/html/rfc6749#section-4.3">Resource Owner Password Credentials Grant</a> only.</p>
+
+<h2>
+<a id="quick-setup" class="anchor" href="#quick-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick setup</h2>
+
+<ul>
+<li>Build <em>Universal</em> target, you’ll find a copy of <code>OAuth2.framework</code> in the project directory.</li>
+<li>Copy <code>OAuth2.framework</code> to your project. Make sure to add it to <strong>Embedded Binaries</strong> section of the project.</li>
+</ul>
+
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h3>
+
+<div class="highlight highlight-objc"><pre>SFTToken *aToken;
+
+[SFTOAuth <span class="pl-c1">requestAccessToken:</span><span class="pl-s"><span class="pl-pds">@"</span>username<span class="pl-pds">"</span></span>
+                    <span class="pl-c1">password:</span><span class="pl-s"><span class="pl-pds">@"</span>password<span class="pl-pds">"</span></span>
+                    <span class="pl-c1">clientId:</span><span class="pl-s"><span class="pl-pds">@"</span>client_id<span class="pl-pds">"</span></span>
+                <span class="pl-c1">clientSecret:</span><span class="pl-s"><span class="pl-pds">@"</span>client_secret<span class="pl-pds">"</span></span>
+        <span class="pl-c1">authenticationServer:</span>[<span class="pl-c1">NSURL</span> <span class="pl-c1">URLWithString:</span><span class="pl-s"><span class="pl-pds">@"</span>http://auth.server.test<span class="pl-pds">"</span></span>]
+                            :^(SFTToken *token, <span class="pl-c1">NSError</span> *error)
+         {
+             aToken = token; 
+         }];
+
+<span class="pl-c">// aRequest is some request</span>
+
+[SFTOAuth <span class="pl-c1">performRequest:</span>aRequest
+               <span class="pl-c1">withToken:</span>aToken
+                <span class="pl-c1">clientId:</span><span class="pl-s"><span class="pl-pds">@"</span>client_id<span class="pl-pds">"</span></span>
+            <span class="pl-c1">clientSecret:</span><span class="pl-s"><span class="pl-pds">@"</span>client_secret<span class="pl-pds">"</span></span>
+    <span class="pl-c1">authenticationServer:</span>[<span class="pl-c1">NSURL</span> <span class="pl-c1">URLWithString:</span><span class="pl-s"><span class="pl-pds">@"</span>http://auth.server.test<span class="pl-pds">"</span></span>]
+                        :^(<span class="pl-c1">NSData</span> *data, <span class="pl-c1">NSError</span> *error)
+     {
+         <span class="pl-c">// ... do your thing</span>
+     }];</pre></div>
+
+<h2>
+<a id="patterns" class="anchor" href="#patterns" aria-hidden="true"><span class="octicon octicon-link"></span></a>Patterns</h2>
+
+<ul>
+<li>Store <code>SFTToken</code> object between sessions, <code>SFTOAuth</code> will update it as necessary with refresh tokens and expiration dates.</li>
+</ul>
+
+<h2>
+<a id="further-reading" class="anchor" href="#further-reading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further reading</h2>
+
+<ul>
+<li><a href="https://tools.ietf.org/html/rfc6749">https://tools.ietf.org/html/rfc6749</a></li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>OAuth2 is available under the Apache License, Version 2.0. See the LICENSE file for more info.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/frumin/objc-oauth2/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/frumin/objc-oauth2/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/frumin/objc-oauth2"></a> is maintained by <a href="https://github.com/frumin">frumin</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
