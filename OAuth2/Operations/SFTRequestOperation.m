@@ -41,6 +41,13 @@
             if (!self.isCancelled) {
                 _block(data, nil);
             }
+        } else if(responseCode == 422) {
+            error = [NSError errorWithDomain:authErrorDomain
+                                        code:responseCode
+                                    userInfo:@{NSLocalizedDescriptionKey: [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]}];
+            if (!self.isCancelled) {
+                _block(nil, error);
+            }
         } else {
             error = [NSError errorWithDomain:authErrorDomain
                                         code:responseCode
