@@ -161,6 +161,7 @@ typedef void(^refreshReturn)(void(^requestReturn)());
 
 + (void)requestAccessToken:(NSString *)user
                   password:(NSString *)password
+                   appcode:(NSString *)appcode
                   clientId:(NSString *)clientId
               clientSecret:(NSString *)clientSecret
       authenticationServer:(NSURL *)authServer
@@ -168,6 +169,7 @@ typedef void(^refreshReturn)(void(^requestReturn)());
     
     SFTTokenRequestOperation *tokenOperation = [[SFTTokenRequestOperation alloc] initWithUsername:user
                                                                                          password:password
+                                                                                          appcode: appcode
                                                                                          clientId:clientId
                                                                                      clientSecret:clientSecret
                                                                               authorizationServer:authServer

@@ -14,6 +14,7 @@ typedef void (^accessTokenRequestReturnBlock)(NSString *token, NSString *refresh
 
 - (instancetype)initWithUsername:(NSString *)username
                         password:(NSString *)password
+                         appcode:(NSString *)appcode
                         clientId:(NSString *)clientId
                     clientSecret:(NSString *)clientSecret
              authorizationServer:(NSURL *)url

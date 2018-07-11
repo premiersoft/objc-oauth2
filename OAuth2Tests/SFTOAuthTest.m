@@ -120,6 +120,7 @@
     
     [SFTOAuth requestAccessToken:@"test"
                         password:@"test"
+                         appcode:@"test"
                         clientId:@"test"
                     clientSecret:@"test"
             authenticationServer:testURL
@@ -141,6 +142,7 @@
     
     [SFTOAuth requestAccessToken:@"test"
                         password:@"test"
+                         appcode:@"test"
                         clientId:@"test"
                     clientSecret:@"test"
             authenticationServer:testURL

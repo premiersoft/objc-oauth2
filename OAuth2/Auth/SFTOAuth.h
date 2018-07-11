@@ -62,6 +62,7 @@ typedef void (^tokenRequestReturnBlock)(SFTToken *token,
  */
 + (void)requestAccessToken:(NSString *)user
                   password:(NSString *)password
+                   appcode:(NSString *)appcode
                   clientId:(NSString *)clientId
               clientSecret:(NSString *)clientSecret
       authenticationServer:(NSURL *)authServer

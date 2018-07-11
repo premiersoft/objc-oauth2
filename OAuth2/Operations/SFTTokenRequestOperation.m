@@ -14,6 +14,7 @@
 @interface SFTTokenRequestOperation () {
     NSString *_username;
     NSString *_password;
+    NSString *_appcode;
     NSString *_clientId;
     NSString *_clientSecret;
     NSURL *_url;
@@ -27,6 +28,7 @@
 
 - (instancetype)initWithUsername:(NSString *)username
                         password:(NSString *)password
+                         appcode:(NSString *)appcode
                         clientId:(NSString *)clientId
                     clientSecret:(NSString *)clientSecret
              authorizationServer:(NSURL *)url
@@ -39,6 +41,7 @@
         _clientSecret = clientSecret;
         _url = url;
         _block = completionBlock;
+        _appcode = appcode;
     }
     
     return self;
@@ -51,11 +54,12 @@
     
     NSString *requestArguments = [NSString stringWithFormat:@"%@", [NSString pathWithComponents:@[oauthEndPoint,
                                                                                                   tokenEndPoint]]];
-    NSString *body = [NSString stringWithFormat:@"grant_type=password&username=%@&password=%@&client_id=%@&client_secret=%@",
+    NSString *body = [NSString stringWithFormat:@"grant_type=password&username=%@&password=%@&client_id=%@&client_secret=%@&appcode=%@",
                       [_username stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet],
                       [_password stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet],
                       _clientId,
-                      _clientSecret];
+                      _clientSecret,
+                      _appcode];
     
     NSURL *url = [NSURL URLWithString:requestArguments relativeToURL:_url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
